@@ -1,0 +1,4 @@
+venv
+db
+*.pyc
+umeus/__pycache__

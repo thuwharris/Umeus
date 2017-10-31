@@ -1,0 +1,43 @@
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+
+          <!-- collapse -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="push" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button> <!-- /collapse -->
+
+          <!-- logo -->
+          <a href="{{ url_for('index') }}">
+            <img class="navbar-brand" src="/static/img/umeus-logo.png"/>
+          </a> <!-- /logo -->
+        </div>
+
+
+        <div id="navbar" class="navbar-collapse collapse">
+
+          <!-- items -->
+          <ul class="nav navbar-nav">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('blog')  }}">Blog</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+          </ul> <!-- /items -->
+
+          <!-- right -->
+          <ul class="nav navbar-nav navbar-right">
+            {% if current_user.is_authenticated %}
+              <li><a href="#">View Account</a></li>
+              <li><a href="{{ url_for('logout') }}">Log out</a></li>
+            {% else %}
+              <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+
+          </ul>
+          <!-- /right -->
+
+        </div>
+      </div>
+    </nav>

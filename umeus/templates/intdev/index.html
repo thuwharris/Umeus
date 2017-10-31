@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include "components/header_items.html" %}
+
+	<title>Umeus</title>
+
+	<link href="/static/css/sections.css" rel="stylesheet">
+</head>
+
+<body>
+
+	{% include "components/navbar.html" %}
+
+	<div class="jumbotron" style="background-image: url('/static/img/sections/symphony_intdev.png');">
+		<div class="container">
+			<h1>International Development</h1>
+			<p>A short introductory sentence about international development, maybe saying how good it is, or something like that. Preferrably, it should take up two lines when viewed at 1080p.</p>
+			<a class="btn btn-success btn-lg" href="#" role="button">Get the book &raquo;</a>
+		</div>
+	</div>
+
+	<div class="container">
+
+		About us
+
+		{% include "components/footer.html" %}
+
+	</div> <!-- /container -->
+
+
+{% include "components/js_loads.html" %}
+
+</body>
+</html>

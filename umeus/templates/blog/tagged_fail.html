@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% include "components/header_items.html" %}
+
+  <title>{{ tag }} | Umeus</title>
+
+  <link href="/static/css/blog/blog.css" rel="stylesheet">
+
+</head>
+<body>
+{% include "components/navbar.html" %}
+
+<div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-8 blog-main">
+
+      	<div class="alert alert-danger">
+          No posts found with tag #{{tag}}
+        </div>
+
+      </div><!-- /.blog-main -->
+
+      <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+          <h4>Older Posts</h4>
+          <ol class="list-unstyled">
+            
+          {% for p in sidebar %}
+            <li><a href="{{ url_for('blog_post', post_id=p.post_id) }}">{{ p.title }}</a></li>
+          {% endfor %}
+
+          </ol>
+        </div>
+      </div><!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+
+    {% include "components/footer.html" %}
+
+  </div><!-- /.container -->
+
+  {% include "components/js_loads.html" %}
+
+</body>
+</html>

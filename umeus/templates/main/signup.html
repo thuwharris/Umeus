@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include "components/header_items.html" %}
+
+	<title>Sign Up | Umeus</title>
+
+	<link href="/static/css/forms.css" rel="stylesheet">
+	<link href="/static/css/main/login.css" rel="stylesheet">
+	<link href="/static/css/main/signup.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<form class="form" action="{{ url_for('signup') }}" method="POST">
+			<h2 class="form-heading">Sign up</h2>
+
+			<div id="errors">
+				{% if form.email.errors %}
+					{% for err in form.email.errors %}
+						<div class="alert alert-danger" role="alert">{{ err }}</div>
+					{% endfor %}
+				{% endif %}
+				{% if form.username.errors %}
+					{% for err in form.username.errors %}
+						<div class="alert alert-danger" role="alert">{{ err }}</div>
+					{% endfor %}
+				{% endif %}
+				{% if form.password.errors %}
+					{% for err in form.password.errors %}
+						<div class="alert alert-danger" role="alert">{{ err }}</div>
+					{% endfor %}
+				{% endif %}
+				{% if form.confirm.errors %}
+					{% for err in form.confirm.errors %}
+						<div class="alert alert-danger" role="alert">{{ err }}</div>
+					{% endfor %}
+				{% endif %}
+				{% if form.recaptcha.errors %}
+					{% for err in form.recaptcha.errors %}
+						<div class="alert alert-danger" role="alert">{{ err }}</div>
+					{% endfor %}
+				{% endif %}
+
+				{% if error %}
+					<div class="alert alert-danger" role="alert">{{ error }}</div>
+				{% endif %}
+			</div>
+
+			<label for="email">Email address</label>
+			<small class="text-muted">Required</small>
+			<input name="email" type="email" id="email" class="form-control" required autofocus>
+			
+			<label for="username">Username</label>
+			<small class="text-muted">Must be at least 3 letters</small>
+			<input name="username" type="text" id="username" class="form-control" required autofocus>
+
+			<label for="password">Password</label>
+			<small class="text-muted">Must be at least 3 letters</small>
+			<input name="password" type="password" id="password" class="form-control" required>
+
+			<label for="confirm">Confirm Password</label>
+			<input name="confirm" type="password" id="confirm" class="form-control" required>
+
+			<div class="checkbox">
+				<input name="tos" type="checkbox"><label>Accept <a href="#" data-toggle="modal" data-target="#tosModal">terms of service</a></label>
+			</div>
+
+			{{ form.recaptcha }}
+
+			{{ form.csrf_token }}
+
+			<button class="btn btn-lg btn-success btn-block" type="submit">Sign Up</button>
+		</form>
+
+		<!-- Modal -->
+		<div class="modal fade" id="tosModal" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="title">Terms of Service</h4>
+					</div>
+
+					<div class="modal-body">
+							TERMS OF SERVICE
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div> <!-- /container -->
+
+{% include "components/js_loads.html" %}
+
+<script src="/static/js/signup-validation.js" />
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include "components/header_items.html" %}
+
+	<title>Umeus</title>
+
+	<link href="/static/css/main/index.css" rel="stylesheet">
+	<link href="/static/css/forms.css" rel="stylesheet">
+	<link href="/static/css/main/contact.css" rel="stylesheet">
+</head>
+
+<body>
+
+	{% include "components/navbar.html" %}
+
+	<div class="container">
+
+		{% if success %}
+			<div class="alert alert-success" role="alert">
+				<b>Message sent!</b> You can expect a response within 3 business days.
+			</div>
+		{% endif %}
+
+		{% if form.email.errors %}
+			{% for err in form.email.errors %}
+				<div class="alert alert-danger" role="alert">{{ err }}</div>
+			{% endfor %}
+		{% endif %}
+
+		{% if form.message.errors %}
+			{% for err in form.message.errors %}
+				<div class="alert alert-danger" role="alert">{{ err }}</div>
+			{% endfor %}
+		{% endif %}
+
+		{% if form.recaptcha.errors %}
+			{% for err in form.recaptcha.errors %}
+				<div class="alert alert-danger" role="alert">{{ err }}</div>
+			{% endfor %}
+		{% endif %}
+
+		<h2>Contact Us</h2>
+
+		<form class="form" action="{{ url_for('contact') }}" method="post">
+			<input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{ email }}"/><br />
+			<textarea name="message" id="message" class="form-control" placeholder="Message" rows="7" maxlength="1024">{{ message }}</textarea><br />
+
+			{{ form.recaptcha }}
+			{{ form.csrf_token }}
+
+			<input type="submit" value="Send" class="btn btn-lg btn-primary btn-block"/>
+
+		</form>
+
+		{% include "components/footer.html" %}
+
+	</div> <!-- /container -->
+
+
+{% include "components/js_loads.html" %}
+
+</body>
+</html>

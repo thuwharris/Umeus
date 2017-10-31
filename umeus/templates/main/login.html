@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include "components/header_items.html" %}
+
+	<title>Login | Umeus</title>
+
+	<link href="/static/css/forms.css" rel="stylesheet">
+	<link href="/static/css/main/login.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+
+		<form class="form" action="{{ url_for('login') }}" method="POST">
+			<h2 class="form-heading">Please sign in</h2>
+
+			{% if form.username.errors %}
+				{% for err in form.username.errors %}
+					<div class="alert alert-danger" role="alert">{{ err }}</div>
+				{% endfor %}
+			{% endif %}
+
+			{% if form.password.errors %}
+				{% for err in form.password.errors %}
+					<div class="alert alert-danger" role="alert">{{ err }}</div>
+				{% endfor %}
+			{% endif %}
+
+			{% if error %}
+				<div class="alert alert-danger" role="alert">{{ error }}</div>
+			{% endif %}
+			
+			<label for="username" class="sr-only">Username</label>
+			<input name="username" type="text" id="username" class="form-control" placeholder="Username" required autofocus>
+			
+			<label for="password" class="sr-only">Password</label>
+			<input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
+			
+			<div class="checkbox">
+				<input name="remember" type="checkbox" value="remember-me"><label>Remember me</label>
+			</div>
+
+			<!--{{ form.recaptcha }}-->
+			{{ form.csrf_token }}
+
+			<button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
+		</form>
+
+		<div class="login-buttons">
+			<a href="{{ url_for('signup') }}">
+				<button class="btn btn-lg btn-warning btn-block" type="submit">Create an account</button>
+			</a>
+			<a href="">
+				<button class="btn btn-lg btn-warning btn-block" type="submit">Forgotten your password?</button>
+			</a>
+		</div>
+
+	</div> <!-- /container -->
+
+
+
+{% include "components/js_loads.html" %}
+
+</body>
+</html>

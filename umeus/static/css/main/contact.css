@@ -1,0 +1,7 @@
+.form {
+	max-width: 600px;
+}
+
+.form input[type="submit"] {
+	max-width: 304px; //Same width as recaptcha form
+}

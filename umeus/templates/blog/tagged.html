@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% include "components/header_items.html" %}
+
+  <title>{{ tag }} | Umeus</title>
+
+  <link href="/static/css/blog/blog.css" rel="stylesheet">
+
+</head>
+<body>
+{% include "components/navbar.html" %}
+
+<div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-8 blog-main">
+
+      	<h2>All posts tagged with #{{tag}}</h2>
+
+        <div class="list-group">
+      	{% for p in posts %}
+    		  <div class="list-group-item">
+            <h4 class="list-group-item-heading" style="height:30px">
+              <a href="/blog/{{p.post_id}}">{{ p.title }}</a>
+              <small class="text-muted">   by {{p.author}} - {{p.get_date()}}</small>
+            </h4>
+            <p class="list-group-item-text" style="height:20px">
+              {{ p.get_sample() }}
+            </p>
+          </div>
+      	{% endfor %}
+        </div>
+
+      </div><!-- /.blog-main -->
+
+      <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+          <h4>Older Posts</h4>
+          <ol class="list-unstyled">
+            
+          {% for p in sidebar %}
+            <li><a href="{{ url_for('blog_post', post_id=p.post_id) }}">{{ p.title }}</a></li>
+          {% endfor %}
+
+          </ol>
+        </div>
+      </div><!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+
+    {% include "components/footer.html" %}
+
+  </div><!-- /.container -->
+
+  {% include "components/js_loads.html" %}
+
+</body>
+</html>
